@@ -1,0 +1,8 @@
+.onhovershow{
+  display: none;
+}
+
+.tdtoshow:hover  .onhovershow{
+  display: table-cell;
+  background-color: blue;
+}

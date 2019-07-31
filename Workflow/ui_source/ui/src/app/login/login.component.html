@@ -1,0 +1,15 @@
+<div class="card">
+  <h5 class="card-header"></h5>
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+
+    <h3> کاربر وارد شده عبارت است از : {{singleTon.loggedInUsername}}</h3>
+
+
+    <form [formGroup]="form" (ngSubmit)="submit(model)">
+      <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+      <button type="submit" class="btn btn-default">ثبت</button>
+      <button type="reset" class="btn btn-default">ریست</button>
+    </form>
+  </div>
+</div>

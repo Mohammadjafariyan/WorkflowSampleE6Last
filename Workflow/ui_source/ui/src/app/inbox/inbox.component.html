@@ -1,0 +1,121 @@
+<!--<div class="card">
+  <h5 class="card-header"></h5>
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+
+    <form [formGroup]="form" (ngSubmit)="submit(model)">
+      <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+      <button type="submit" class="btn btn-default">ثبت</button>
+      <button type="reset" class="btn btn-default">ریست</button>
+    </form>
+  </div>
+</div>-->
+
+
+<div class="card">
+  <h5 class="card-header">کارتابل عمومی</h5>
+  <div class="card-body">
+    <h5 class="card-title">کارتابل عمومی</h5>
+    <table class="table table-bordered table-condensed">
+      <thead  >
+      <tr>
+        <th>کد</th>
+        <th>عنوان مرخصی</th>
+        <th>موضوع مرخصی</th>
+        <th>نام تایید کننده</th>
+        <th>نام فرم</th>
+        <th>تاریخ درخواست</th>
+        <th>وضعیت</th>
+        <th>توضیحات</th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody class="tdtoshow">
+      <tr *ngFor="let m of generalRecords">
+        <td>{{m.Record.Id}}</td>
+        <td>{{m.Record.Title}}</td>
+        <td>{{m.Record.Subject}}</td>
+        <td>{{m.AssigneeTranslate}}</td>
+        <td>{{m.FormName}}</td>
+        <td>{{m.RequestDate}}</td>
+        <td>{{ m.Status==type.Done ? 'done' :
+          m.Status==type.Error == "error" ? "error" :
+            m.Status==type.InProgress ? "inprogress" :"" }}</td>
+        <td>{{ m.StatusMessage}}</td>
+
+        <td colspan="2"><button title="انحصاری کردن ، ارسال به کارتابل شخصی"
+                    (click)="claim(m)"  type="button" class="onhovershow btn btn-info">بدست گرفتن</button>
+          <button (click)="showDiagram(m)"  type="button" class="onhovershow btn btn-info">نمایش دیاگرام</button>
+
+        </td>
+
+      </tr>
+      </tbody>
+
+    </table>
+  </div>
+</div>
+
+
+<div class="card" *ngIf="imageToShow">
+  <h5 class="card-header">پیش نمایش تصاویر</h5>
+  <div class="card-body">
+    <h5 class="card-title">پیش نمایش تصاویر</h5>
+
+    <img [src]="imageToShow"
+         alt="Place image title"
+         *ngIf="imageToShow">
+    <ng-template *ngIf="!imageToShow">
+      <img alt="تصویر یافت نشد" >
+    </ng-template>
+  </div>
+</div>
+
+
+<div class="card">
+  <h5 class="card-header">کارتابل شخصی</h5>
+  <div class="card-body">
+    <h5 class="card-title">کارتابل شخصی</h5>
+    <table class="table table-bordered table-condensed">
+      <thead>
+      <tr>
+        <th>کد</th>
+        <th>عنوان مرخصی</th>
+        <th>موضوع مرخصی</th>
+        <th>نام تایید کننده</th>
+        <th>نام فرم</th>
+        <th>تاریخ درخواست</th>
+        <th>وضعیت</th>
+        <th>توضیحات</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        </tr>
+      </thead>
+      <tbody class="tdtoshow">
+      <tr *ngFor="let m of records" >
+        <td>{{m.Record.Id}}</td>
+        <td>{{m.Record.Title}}</td>
+        <td>{{m.Record.Subject}}</td>
+        <td>{{m.AssigneeTranslate}}</td>
+        <td>{{m.FormName}}</td>
+        <td>{{m.RequestDate}}</td>
+        <td>{{ m.Status==type.Done ? 'done' :
+          m.Status==type.Error == "error" ? "error" :
+            m.Status==type.InProgress ? "inprogress" :"" }}</td>
+        <td>{{ m.StatusMessage}}</td>
+
+        <td colspan="3"><button (click)="unClaim(m)"  type="button" class="onhovershow btn btn-info">ارجاع به کارتابل عمومی </button>
+
+          <button (click)="continue(m)"  type="button" class="onhovershow btn btn-info">تایید</button>
+          <button (click)="showDiagram(m)"  type="button" class="onhovershow btn btn-info">نمایش دیاگرام</button>
+        </td>
+      </tr>
+      </tbody>
+
+    </table>
+  </div>
+</div>
+
+

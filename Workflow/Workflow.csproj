@@ -152,7 +152,9 @@
     <Compile Include="Controllers\GenericController.cs" />
     <Compile Include="Controllers\HelloController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NotificationsController.cs" />
     <Compile Include="Controllers\OrgChartService.cs" />
+    <Compile Include="Controllers\ProcessDefinitionController.cs" />
     <Compile Include="Controllers\VacationController.cs" />
     <Compile Include="Controllers\WorkflowController.cs" />
     <Compile Include="Global.asax.cs">
@@ -169,6 +171,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\InboxTask.cs" />
     <Compile Include="Models\MyContext.cs" />
+    <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Vacation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceTests\ClientTests\WorkflowServiceTests.cs" />
@@ -184,6 +187,7 @@
     <Compile Include="Service\Models\EngineUser.cs" />
     <Compile Include="Service\Models\GetProcessDefinitionsRequest.cs" />
     <Compile Include="Service\Models\QueryHistoricProcessInstanceRequest.cs" />
+    <Compile Include="Service\Models\WorkflowEngineModels\BPMNModelGrid.cs" />
     <Compile Include="Service\Models\WorkflowEngineModels\EngineActivateProcessDefinitionRequest.cs" />
     <Compile Include="Service\Models\WorkflowEngineModels\EngineActivateProcessDefinitionResponse.cs" />
     <Compile Include="Service\Models\WorkflowEngineModels\EngineInboxTask.cs" />
@@ -270,6 +274,10 @@
     <Content Include="ui_source\ui\src\app\login\login.component.html" />
     <Content Include="ui_source\ui\src\app\outbox\outbox.component.css" />
     <Content Include="ui_source\ui\src\app\outbox\outbox.component.html" />
+    <Content Include="ui_source\ui\src\app\process-definition-list\process-definition-list.component.css" />
+    <Content Include="ui_source\ui\src\app\process-definition-list\process-definition-list.component.html" />
+    <Content Include="ui_source\ui\src\app\receivers\receivers.component.css" />
+    <Content Include="ui_source\ui\src\app\receivers\receivers.component.html" />
     <Content Include="ui_source\ui\src\app\vacation-request\vacation-request.component.css" />
     <Content Include="ui_source\ui\src\app\vacation-request\vacation-request.component.html" />
     <Content Include="ui_source\ui\src\assets\.gitkeep" />
@@ -334,6 +342,10 @@
     <TypeScriptCompile Include="ui_source\ui\src\app\login\login.component.ts" />
     <TypeScriptCompile Include="ui_source\ui\src\app\outbox\outbox.component.spec.ts" />
     <TypeScriptCompile Include="ui_source\ui\src\app\outbox\outbox.component.ts" />
+    <TypeScriptCompile Include="ui_source\ui\src\app\process-definition-list\process-definition-list.component.spec.ts" />
+    <TypeScriptCompile Include="ui_source\ui\src\app\process-definition-list\process-definition-list.component.ts" />
+    <TypeScriptCompile Include="ui_source\ui\src\app\receivers\receivers.component.spec.ts" />
+    <TypeScriptCompile Include="ui_source\ui\src\app\receivers\receivers.component.ts" />
     <TypeScriptCompile Include="ui_source\ui\src\app\service\generic-service.service.spec.ts" />
     <TypeScriptCompile Include="ui_source\ui\src\app\service\generic-service.service.ts" />
     <TypeScriptCompile Include="ui_source\ui\src\app\service\models.ts" />

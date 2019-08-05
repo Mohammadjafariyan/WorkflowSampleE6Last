@@ -214,6 +214,7 @@ namespace WorkflowSample.Service.Client
             }
         }
 
+
         public async Task<EngineQueryHistoricProcessInstanceGrid> QueryHistoricProcessInstances(
             QueryHistoricProcessInstanceRequest request)
         {
@@ -264,6 +265,108 @@ namespace WorkflowSample.Service.Client
                     "باید یکی از پارامتر ها مقدار دهی شده باشند processDefinitionKey , ProcessDefinitionId: ");
 
             return await QueryHistoric<EngineQueryHistoricTasksGrid>(url, request);
+        }
+
+        public async Task<EngineProcessDiagram> GetPhoto(DiagramRequest request)
+        {
+            using (_httpClient = new HttpClient())
+            {
+                _httpClient.DefaultRequestHeaders.Accept.Clear();
+                /*
+                _httpClient.DefaultRequestHeaders.Accept.Add(
+                    new MediaTypeWithQualityHeaderValue("application/json"));
+*/
+
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue(
+                        "Basic", Convert.ToBase64String(
+                            Encoding.UTF8.GetBytes(
+                                $"{WorkflowSettingSingleTon.WorkflowSetting.Username}:{WorkflowSettingSingleTon.WorkflowSetting.Password}")));
+
+
+                // ایجاد کاربر در engine اگر وجود نداشته باشد
+                IsUserExistsOrNotCreateIt();
+
+
+                var baseUrl = WorkflowSettingSingleTon.WorkflowSetting.BaseUrl;
+                var url = $@"{baseUrl}/getPhoto?key={request.processDefinitionKey}";
+                var resp = await _httpClient.GetAsync(url);
+                if ((int) resp.StatusCode == 200)
+                {
+                    return new EngineProcessDiagram {Content = await resp.Content.ReadAsByteArrayAsync()};
+                }
+                else if ((int) resp.StatusCode == 400)
+                {
+                    var errorxml = await resp.Content.ReadAsStringAsync();
+                    throw new ActivitiEngineClientException("پارامتر های اشتباه " + errorxml);
+                }
+                else
+                {
+                    var errorxml = await resp.Content.ReadAsStringAsync();
+                    throw new Exception(errorxml);
+                }
+            }
+        }
+
+        public async Task<BpmnModel> GetModel(string processDefinitionId, string username)
+        {
+            using (_httpClient = new HttpClient())
+            {
+                SetDefaultHeaders(_httpClient);
+
+                // ایجاد کاربر در engine اگر وجود نداشته باشد
+                IsUserExistsOrNotCreateIt();
+
+
+                var baseUrl = WorkflowSettingSingleTon.WorkflowSetting.BaseUrl;
+                var url = $@"{baseUrl}/repository/process-definitions/{processDefinitionId}/model";
+                var resp = await _httpClient.GetAsync(url);
+                if ((int) resp.StatusCode == 200)
+                {
+                    return await ActivitiEngineClientHelper.Parse<BpmnModel>(resp);
+                }
+                else if ((int) resp.StatusCode == 400)
+                {
+                    var errorxml = await resp.Content.ReadAsStringAsync();
+                    throw new ActivitiEngineClientException("پارامتر های اشتباه " + errorxml);
+                }
+                else
+                {
+                    var errorxml = await resp.Content.ReadAsStringAsync();
+                    throw new Exception(errorxml);
+                }
+            }
+        }
+
+
+        public async Task<EngineProcessDefinition> GetProcessDefinitionById(string processDefinitionId)
+        {
+            using (_httpClient = new HttpClient())
+            {
+                SetDefaultHeaders(_httpClient);
+
+                // ایجاد کاربر در engine اگر وجود نداشته باشد
+                IsUserExistsOrNotCreateIt();
+
+
+                var baseUrl = WorkflowSettingSingleTon.WorkflowSetting.BaseUrl;
+                var url = $@"{baseUrl}/repository/process-definitions/{processDefinitionId}";
+                var resp = await _httpClient.GetAsync(url);
+                if ((int) resp.StatusCode == 200)
+                {
+                    return await ActivitiEngineClientHelper.Parse<EngineProcessDefinition>(resp);
+                }
+                else if ((int) resp.StatusCode == 400)
+                {
+                    var errorxml = await resp.Content.ReadAsStringAsync();
+                    throw new ActivitiEngineClientException("پارامتر های اشتباه " + errorxml);
+                }
+                else
+                {
+                    var errorxml = await resp.Content.ReadAsStringAsync();
+                    throw new Exception(errorxml);
+                }
+            }
         }
 
 
@@ -335,11 +438,12 @@ namespace WorkflowSample.Service.Client
             if (EngineTask.Suspended)
                 throw new AccessViolationException("این Task به یک نفر دیگر Suspended شده است " + EngineTask.Assignee);
 
-            if (string.IsNullOrEmpty(EngineTask.Assignee) && continueRequest.RequestStatus != WorkflowContinueRequestStatus.Claim)
+            if (string.IsNullOrEmpty(EngineTask.Assignee) &&
+                continueRequest.RequestStatus != WorkflowContinueRequestStatus.Claim)
                 throw new AccessViolationException("باید قبل از انجام این Task ابتدا آن را در وضعیت انحصار قرار دهید");
 
             var isEq = string.Equals(EngineTask.Assignee, continueRequest.Username);
-            if ( !isEq  &&  continueRequest.RequestStatus != WorkflowContinueRequestStatus.Claim)
+            if (!isEq && continueRequest.RequestStatus != WorkflowContinueRequestStatus.Claim)
             {
                 throw new AccessViolationException(
                     "این Task توسط یک نفر دیگر در وضعیت انحصار انجام قرار گرفته است یا نام کاربری اشتباه است " +
@@ -419,7 +523,7 @@ namespace WorkflowSample.Service.Client
             {
                 rContinue.Status = EngineResponseStatus.Fail;
                 var errorxml = await resp.Content.ReadAsStringAsync();
-                throw new ActivitiEngineClientException(" این کد رسپانس پیاده سازی نشده " +  errorxml);
+                throw new ActivitiEngineClientException(" این کد رسپانس پیاده سازی نشده " + errorxml);
             }
 
             return rContinue;
@@ -479,14 +583,14 @@ namespace WorkflowSample.Service.Client
         private Variable[] ToVariables
             (Dictionary<string, string> startModelVariables, WorkflowContinueRequest rStart)
         {
-
             if (startModelVariables == null)
             {
                 startModelVariables = new Dictionary<string, string>();
             }
+
             //     startModelVariables.Add("id", rStart.Id.ToString());
             startModelVariables.Add("username", rStart.Username.ToString());
-           // startModelVariables.Add("upperUsername", rStart.UpperUsername.ToString());
+            // startModelVariables.Add("upperUsername", rStart.UpperUsername.ToString());
 
             List<Variable> vars = new List<Variable>();
             foreach (var variable in startModelVariables)
@@ -532,6 +636,10 @@ namespace WorkflowSample.Service.Client
 
         Task<EngineQueryHistoricTasksGrid> QueryHistoricTasks(
             QueryHistoricProcessInstanceRequest queryHistoricProcessInstanceRequest);
+
+        Task<EngineProcessDiagram> GetPhoto(DiagramRequest request);
+        Task<BpmnModel> GetModel(string processDefinitionId, string username);
+        Task<EngineProcessDefinition> GetProcessDefinitionById(string processDefinitionId);
     }
 
     public class ActivitiEngineClientException : Exception

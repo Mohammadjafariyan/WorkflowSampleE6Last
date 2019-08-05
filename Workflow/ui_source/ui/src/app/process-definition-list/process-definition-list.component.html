@@ -1,0 +1,33 @@
+
+<div class="card">
+  <h5 class="card-header">لیست گردش کار ها</h5>
+  <div class="card-body">
+    <h5 class="card-title">لیست گردش کار ها</h5>
+    <table class="table table-bordered table-condensed">
+      <thead>
+      <tr>
+        <th>کد</th>
+        <th>نام</th>
+        <th>ورژن</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody class="tdtoshow">
+      <tr *ngFor="let m of records" >
+        <td>{{m.id}}</td>
+        <td>{{m.name}}</td>
+        <td>{{m.version}}</td>
+        <td colspan="3">
+          <button (click)="getReceivers(m)"  type="button" class="onhovershow btn btn-info">گیرندگان</button>
+
+        </td>
+      </tr>
+      </tbody>
+
+    </table>
+  </div>
+</div>
+
+

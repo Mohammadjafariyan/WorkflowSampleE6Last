@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="card">
+      <h5 class="card-header">گیرندگان</h5>
+      <div class="card-body">
+        <h5 class="card-title">گیرندگان</h5>
+        <table class="table table-bordered table-condensed">
+          <thead>
+          <tr>
+            <th>کد</th>
+            <th>نام</th>
+            <th>گیرنده کاربر</th>
+            <th>گیرنده پست سازمانی</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody class="tdtoshow">
+          <tr *ngFor="let m of records">
+            <td>{{m.id}}</td>
+            <td>{{m.name}}</td>
+            <td>
+              <select [disabled]="m.Post" name="Username" [(ngModel)]="m.Username">
+                <option>انتخاب کنید</option>
+              </select>
+            </td>
+            <td>
+              <select [disabled]="m.Username" name="Post" [(ngModel)]="m.Post">
+                <option>انتخاب کنید</option>
+              </select>
+            </td>
+            <td>
+              <button class="btn btn-danger" (click)="m.Username=null;m.Post=null"> حذف انتخاب</button>
+            </td>
+          </tr>
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="col-md-6">
+    <img [src]="imgUrl" style="-webkit-user-select: none;cursor: zoom-in;" alt=""/>
+  </div>
+
+</div>
+
+
+

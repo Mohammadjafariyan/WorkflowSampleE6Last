@@ -5,6 +5,9 @@ import {AccountManagementComponent} from "./account-management/account-managemen
 import {LoginComponent} from "./login/login.component";
 import {InboxComponent} from "./inbox/inbox.component";
 import {OutboxComponent} from "./outbox/outbox.component";
+import {ReceiversComponent} from "./receivers/receivers.component";
+import {ProcessDefinition} from "./service/models";
+import {ProcessDefinitionListComponent} from "./process-definition-list/process-definition-list.component";
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'vacation'},
@@ -13,6 +16,8 @@ const routes: Routes = [
   {path: 'account', component: AccountManagementComponent},
   {path: 'inbox', component: InboxComponent},
   {path: 'outbox', component: OutboxComponent},
+  {path: 'receivers', component: ReceiversComponent},
+  {path: 'processDefinitions', component: ProcessDefinitionListComponent},
 
 ];
 

@@ -22,6 +22,7 @@ namespace WorkflowSampleE6Last.Models
 
         public virtual DbSet<Vacation> Vacations { get; set; }
         public virtual DbSet<Account> Accounts { get; set; }
+      //  public virtual DbSet<Notification> Notifications { get; set; }
         
     }
 }

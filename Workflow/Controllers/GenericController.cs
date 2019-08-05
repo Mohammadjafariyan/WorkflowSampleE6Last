@@ -296,7 +296,7 @@ namespace Workflow.Controllers
             return _orgChartService.GetUpperUsername(User.Identity.Name);
         }
 
-        protected virtual string GetUsername()
+        public static string GetUsername()
         {
             var username = HttpContext.Current.Session["loggedInUsername"];
             if (username == null || string.IsNullOrEmpty(username.ToString()))

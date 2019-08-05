@@ -14,6 +14,73 @@ export enum ResultType {
 }
 
 
+export interface BpmnModelViewModel extends  IWorkflowModel{
+  Id;
+  Name;
+  Username;
+  Post;
+}
+
+
+export interface FormProperty extends  IWorkflowModel
+{
+  Post;
+  Username;
+  id;
+  xmlRowNumber;
+  xmlColumnNumber;
+  extensionElements;
+  attributes;
+  name;
+  expression;
+  variable;
+  type:TypeEnum;
+  defaultExpression;
+  datePattern;
+  readable;
+  writeable;
+  required;
+  formValues;
+}
+
+export enum TypeEnum { Long, String }
+
+
+export interface ProcessDefinitionGrid extends  IWorkflowModel{
+  data:  ProcessDefinition[];
+  total: number;
+  start: number;
+  sort:  string;
+  order: string;
+  size:  number;
+}
+
+export interface ProcessDefinition {
+  id:                       string;
+  url:                      string;
+  version:                  number;
+  key:                      string;
+  category:                 string;
+  suspended:                boolean;
+  name:                     string;
+  description:              string;
+  deploymentID:             string;
+  deploymentURL:            string;
+  graphicalNotationDefined: boolean;
+  resource:                 string;
+  diagramResource:          string;
+  startFormDefined:         boolean;
+}
+
+export class Notification implements IWorkflowModel
+{
+  Id;
+  Subject;
+  ReceiverUsername;
+  Title;
+  Description;
+}
+
 export class Vacation implements IWorkflowModel {
   Id;
   Title;

@@ -15,7 +15,15 @@ namespace WorkflowSample.Service.Client
         Task<EngineInboxTaskList> GetInboxTasks(EngineInboxTaskRequest inboxTaskRequest);
         Task<EngineProcessDefinitionGrid> GetProcessDefinitions(ProcessDefinitionsRequest request);
         Task<EngineProcessDiagram> GetDiagram(DiagramRequest request);
-        Task<EngineQueryHistoricProcessInstanceGrid> QueryHistoricProcessInstances(QueryHistoricProcessInstanceRequest request);
+
+        Task<EngineQueryHistoricProcessInstanceGrid> QueryHistoricProcessInstances(
+            QueryHistoricProcessInstanceRequest request);
+
+        Task<BpmnModel> GetModel(string processDefinitionId, string username);
+        Task<EngineProcessDiagram> GetPhoto(DiagramRequest request);
+
+        Task<EngineProcessDefinition> GetProcessDefinitionById(string processDefinitionId);
+
     }
 
     public class WorkflowService : IWorkflowService
@@ -28,6 +36,7 @@ namespace WorkflowSample.Service.Client
 
             return await engineClient.SendToWorkflow(startModel);
         }
+
 
         public async Task<WorkflowContinueResponse> Continue(WorkflowContinueRequest continueRequest)
         {
@@ -60,7 +69,6 @@ namespace WorkflowSample.Service.Client
             return await engineClient.GetProcessDefinitions(request);
         }
 
-    
 
         public async Task<EngineProcessDiagram> GetDiagram(DiagramRequest request)
         {
@@ -72,7 +80,8 @@ namespace WorkflowSample.Service.Client
             return await engineClient.GetDiagram(request);
         }
 
-        public async Task<EngineQueryHistoricProcessInstanceGrid> QueryHistoricProcessInstances(QueryHistoricProcessInstanceRequest request)
+        public async Task<EngineQueryHistoricProcessInstanceGrid> QueryHistoricProcessInstances(
+            QueryHistoricProcessInstanceRequest request)
         {
             ValidateQueryHistoricProcessInstancesRequest(request);
 
@@ -81,7 +90,31 @@ namespace WorkflowSample.Service.Client
 
             return await engineClient.QueryHistoricProcessInstances(request);
         }
-        public async Task<EngineQueryHistoricTasksGrid> 
+
+
+        public async Task<EngineProcessDefinition> GetProcessDefinitionById(string processDefinitionId)
+        {
+            var engineClient = InjectorSingleTon.Inject<IWorkflowEngineClient>();
+
+            return await engineClient.GetProcessDefinitionById(processDefinitionId);
+        }
+
+
+        public async Task<BpmnModel> GetModel(string processDefinitionId, string username)
+        {
+            var engineClient = InjectorSingleTon.Inject<IWorkflowEngineClient>();
+
+            return await engineClient.GetModel(processDefinitionId, username);
+        }
+
+        public async Task<EngineProcessDiagram> GetPhoto(DiagramRequest request)
+        {
+            var engineClient = InjectorSingleTon.Inject<IWorkflowEngineClient>();
+
+            return await engineClient.GetPhoto(request);
+        }
+
+        public async Task<EngineQueryHistoricTasksGrid>
             QueryHistoricTasks(QueryHistoricProcessInstanceRequest queryHistoricProcessInstanceRequest)
         {
             ValidateHistoricTasks(queryHistoricProcessInstanceRequest);
@@ -90,23 +123,23 @@ namespace WorkflowSample.Service.Client
 
 
             return await engineClient.QueryHistoricTasks(queryHistoricProcessInstanceRequest);
-
         }
-
-     
 
 
         #region private
+
         private void ValidateHistoricTasks(object request)
         {
         }
+
         private void ValidateQueryHistoricProcessInstancesRequest(QueryHistoricProcessInstanceRequest request)
         {
-            
         }
+
         private void ValidateGetProcessDefinitions(ProcessDefinitionsRequest request)
         {
         }
+
         private void ValidateInboxTaskRequest(EngineInboxTaskRequest inboxTaskRequest)
         {
             if (string.IsNullOrEmpty(inboxTaskRequest.assignee) &&
@@ -163,6 +196,7 @@ namespace WorkflowSample.Service.Client
 
             //todo: باید بررسی شود آیا این key وجورد دارد یا خیر
         }
+
         private void ValidateGetDiagram(object inboxTaskRequest)
         {
         }
@@ -177,8 +211,6 @@ namespace WorkflowSample.Service.Client
         }
 
         #endregion
-
-        
     }
 
     public class WorkflowServiceException : Exception

@@ -174,6 +174,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
 /* harmony import */ var _inbox_inbox_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./inbox/inbox.component */ "./src/app/inbox/inbox.component.ts");
 /* harmony import */ var _outbox_outbox_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./outbox/outbox.component */ "./src/app/outbox/outbox.component.ts");
+/* harmony import */ var _receivers_receivers_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./receivers/receivers.component */ "./src/app/receivers/receivers.component.ts");
+/* harmony import */ var _process_definition_list_process_definition_list_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./process-definition-list/process-definition-list.component */ "./src/app/process-definition-list/process-definition-list.component.ts");
+
+
 
 
 
@@ -189,6 +193,8 @@ var routes = [
     { path: 'account', component: _account_management_account_management_component__WEBPACK_IMPORTED_MODULE_4__["AccountManagementComponent"] },
     { path: 'inbox', component: _inbox_inbox_component__WEBPACK_IMPORTED_MODULE_6__["InboxComponent"] },
     { path: 'outbox', component: _outbox_outbox_component__WEBPACK_IMPORTED_MODULE_7__["OutboxComponent"] },
+    { path: 'receivers', component: _receivers_receivers_component__WEBPACK_IMPORTED_MODULE_8__["ReceiversComponent"] },
+    { path: 'processDefinitions', component: _process_definition_list_process_definition_list_component__WEBPACK_IMPORTED_MODULE_9__["ProcessDefinitionListComponent"] },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -224,7 +230,7 @@ module.exports = "li{\r\n  margin-left: 20px;\r\n}\r\n:host>>> * {\r\n  directio
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<ul style=\"display: flex\">\n  <li>\n    <h2><a routerLink=\"/vacation\">مرخصی ها</a></h2>\n    <h2><a routerLink=\"/account\">اکانت ها</a></h2>\n    <h2><a routerLink=\"/login\">ورود به سیستم</a></h2>\n    <h2><a routerLink=\"/inbox\">صندوق ورودی</a></h2>\n    <h2><a routerLink=\"/outbox\">صندوق خروجی</a></h2>\n  </li>\n\n</ul>\n\n<router-outlet></router-outlet>\n"
+module.exports = "\n<ul style=\"display: flex\">\n  <li>\n    <h2><a routerLink=\"/vacation\">مرخصی ها</a></h2>\n    <h2><a routerLink=\"/account\">اکانت ها</a></h2>\n    <h2><a routerLink=\"/login\">ورود به سیستم</a></h2>\n    <h2><a routerLink=\"/inbox\">صندوق ورودی</a></h2>\n    <h2><a routerLink=\"/outbox\">صندوق خروجی</a></h2>\n    <h2><a routerLink=\"/processDefinitions\">گردش کار ها</a></h2>\n  </li>\n\n</ul>\n\n<router-outlet></router-outlet>\n"
 
 /***/ }),
 
@@ -241,22 +247,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _service_SingleTon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./service/SingleTon */ "./src/app/service/SingleTon.ts");
+/* harmony import */ var _service_generic_service_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./service/generic-service.service */ "./src/app/service/generic-service.service.ts");
+
 
 
 
 var AppComponent = /** @class */ (function () {
-    function AppComponent(SingleTon) {
+    function AppComponent(SingleTon, DataHolderService) {
         this.SingleTon = SingleTon;
+        this.DataHolderService = DataHolderService;
         this.title = 'ui';
     }
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-root',
             template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
-            providers: [_service_SingleTon__WEBPACK_IMPORTED_MODULE_2__["SingleTon"]],
+            providers: [_service_SingleTon__WEBPACK_IMPORTED_MODULE_2__["SingleTon"], _service_generic_service_service__WEBPACK_IMPORTED_MODULE_3__["DataHolderService"]],
             styles: [__webpack_require__(/*! ./app.component.css */ "./src/app/app.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_SingleTon__WEBPACK_IMPORTED_MODULE_2__["SingleTon"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_SingleTon__WEBPACK_IMPORTED_MODULE_2__["SingleTon"], _service_generic_service_service__WEBPACK_IMPORTED_MODULE_3__["DataHolderService"]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -289,6 +298,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
 /* harmony import */ var _inbox_inbox_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./inbox/inbox.component */ "./src/app/inbox/inbox.component.ts");
 /* harmony import */ var _outbox_outbox_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./outbox/outbox.component */ "./src/app/outbox/outbox.component.ts");
+/* harmony import */ var _process_definition_list_process_definition_list_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./process-definition-list/process-definition-list.component */ "./src/app/process-definition-list/process-definition-list.component.ts");
+/* harmony import */ var _receivers_receivers_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./receivers/receivers.component */ "./src/app/receivers/receivers.component.ts");
+
+
 
 
 
@@ -314,7 +327,9 @@ var AppModule = /** @class */ (function () {
                 _account_management_account_management_component__WEBPACK_IMPORTED_MODULE_10__["AccountManagementComponent"],
                 _login_login_component__WEBPACK_IMPORTED_MODULE_11__["LoginComponent"],
                 _inbox_inbox_component__WEBPACK_IMPORTED_MODULE_12__["InboxComponent"],
-                _outbox_outbox_component__WEBPACK_IMPORTED_MODULE_13__["OutboxComponent"]
+                _outbox_outbox_component__WEBPACK_IMPORTED_MODULE_13__["OutboxComponent"],
+                _process_definition_list_process_definition_list_component__WEBPACK_IMPORTED_MODULE_14__["ProcessDefinitionListComponent"],
+                _receivers_receivers_component__WEBPACK_IMPORTED_MODULE_15__["ReceiversComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -331,6 +346,7 @@ var AppModule = /** @class */ (function () {
                  * - NativeScript: FormlyNativescriptModule
                  */
                 _ngx_formly_bootstrap__WEBPACK_IMPORTED_MODULE_7__["FormlyBootstrapModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"],
             ],
             providers: [],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
@@ -684,6 +700,215 @@ var OutboxComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/process-definition-list/process-definition-list.component.css":
+/*!*******************************************************************************!*\
+  !*** ./src/app/process-definition-list/process-definition-list.component.css ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3Byb2Nlc3MtZGVmaW5pdGlvbi1saXN0L3Byb2Nlc3MtZGVmaW5pdGlvbi1saXN0LmNvbXBvbmVudC5jc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/process-definition-list/process-definition-list.component.html":
+/*!********************************************************************************!*\
+  !*** ./src/app/process-definition-list/process-definition-list.component.html ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n<div class=\"card\">\n  <h5 class=\"card-header\">لیست گردش کار ها</h5>\n  <div class=\"card-body\">\n    <h5 class=\"card-title\">لیست گردش کار ها</h5>\n    <table class=\"table table-bordered table-condensed\">\n      <thead>\n      <tr>\n        <th>کد</th>\n        <th>نام</th>\n        <th>ورژن</th>\n        <th></th>\n        <th></th>\n        <th></th>\n      </tr>\n      </thead>\n      <tbody class=\"tdtoshow\">\n      <tr *ngFor=\"let m of records\" >\n        <td>{{m.id}}</td>\n        <td>{{m.name}}</td>\n        <td>{{m.version}}</td>\n        <td colspan=\"3\">\n          <button (click)=\"getReceivers(m)\"  type=\"button\" class=\"onhovershow btn btn-info\">گیرندگان</button>\n\n        </td>\n      </tr>\n      </tbody>\n\n    </table>\n  </div>\n</div>\n\n\n"
+
+/***/ }),
+
+/***/ "./src/app/process-definition-list/process-definition-list.component.ts":
+/*!******************************************************************************!*\
+  !*** ./src/app/process-definition-list/process-definition-list.component.ts ***!
+  \******************************************************************************/
+/*! exports provided: ProcessDefinitionListComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProcessDefinitionListComponent", function() { return ProcessDefinitionListComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _service_models__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../service/models */ "./src/app/service/models.ts");
+/* harmony import */ var _service_generic_service_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../service/generic-service.service */ "./src/app/service/generic-service.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
+
+
+
+
+var ProcessDefinitionListComponent = /** @class */ (function () {
+    function ProcessDefinitionListComponent(processDefinitionService, workflowService, dataHolderService, router) {
+        this.processDefinitionService = processDefinitionService;
+        this.workflowService = workflowService;
+        this.dataHolderService = dataHolderService;
+        this.router = router;
+        this.records = [];
+        this.type = _service_models__WEBPACK_IMPORTED_MODULE_2__["ProcessInstanceStatus"];
+    }
+    ProcessDefinitionListComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        // کارتابل عمومی
+        this.processDefinitionService.getAll().toPromise()
+            .then(function (res) {
+            if (res.Type == _service_models__WEBPACK_IMPORTED_MODULE_2__["ResultType"].Success) {
+                _this.records = res.SingleRecord.data;
+            }
+            else {
+                _this.records = [];
+                alert(res.Message);
+            }
+        });
+    };
+    ProcessDefinitionListComponent.prototype.showDiagram = function (m) {
+        /*this.workflowService.GetPhoto(m.key).toPromise()
+          .then(res => {
+            if (res.Type == ResultType.Success) {
+              const blob = new Blob([res.SingleRecord], {type: 'image/png'});
+    
+              this.createImageFromBlob(blob);
+            } else {
+              this.records=[];
+              alert(res.Message);
+            }
+    
+          });*/
+    };
+    ProcessDefinitionListComponent.prototype.getReceivers = function (m) {
+        this.dataHolderService.processDefinition = m;
+        this.router.navigate(['/receivers']);
+    };
+    ProcessDefinitionListComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-process-definition-list',
+            template: __webpack_require__(/*! ./process-definition-list.component.html */ "./src/app/process-definition-list/process-definition-list.component.html"),
+            styles: [__webpack_require__(/*! ./process-definition-list.component.css */ "./src/app/process-definition-list/process-definition-list.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_generic_service_service__WEBPACK_IMPORTED_MODULE_3__["ProcessDefinitionService"],
+            _service_generic_service_service__WEBPACK_IMPORTED_MODULE_3__["WorkflowService"],
+            _service_generic_service_service__WEBPACK_IMPORTED_MODULE_3__["DataHolderService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
+    ], ProcessDefinitionListComponent);
+    return ProcessDefinitionListComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/receivers/receivers.component.css":
+/*!***************************************************!*\
+  !*** ./src/app/receivers/receivers.component.css ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3JlY2VpdmVycy9yZWNlaXZlcnMuY29tcG9uZW50LmNzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/receivers/receivers.component.html":
+/*!****************************************************!*\
+  !*** ./src/app/receivers/receivers.component.html ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\n  <div class=\"col-md-6\">\n    <div class=\"card\">\n      <h5 class=\"card-header\">گیرندگان</h5>\n      <div class=\"card-body\">\n        <h5 class=\"card-title\">گیرندگان</h5>\n        <table class=\"table table-bordered table-condensed\">\n          <thead>\n          <tr>\n            <th>کد</th>\n            <th>نام</th>\n            <th>گیرنده کاربر</th>\n            <th>گیرنده پست سازمانی</th>\n            <th></th>\n          </tr>\n          </thead>\n          <tbody class=\"tdtoshow\">\n          <tr *ngFor=\"let m of records\">\n            <td>{{m.id}}</td>\n            <td>{{m.name}}</td>\n            <td>\n              <select [disabled]=\"m.Post\" name=\"Username\" [(ngModel)]=\"m.Username\">\n                <option>انتخاب کنید</option>\n              </select>\n            </td>\n            <td>\n              <select [disabled]=\"m.Username\" name=\"Post\" [(ngModel)]=\"m.Post\">\n                <option>انتخاب کنید</option>\n              </select>\n            </td>\n            <td>\n              <button class=\"btn btn-danger\" (click)=\"m.Username=null;m.Post=null\"> حذف انتخاب</button>\n            </td>\n          </tr>\n          </tbody>\n\n        </table>\n      </div>\n    </div>\n\n\n  </div>\n  <div class=\"col-md-6\">\n    <img [src]=\"imgUrl\" style=\"-webkit-user-select: none;cursor: zoom-in;\" alt=\"\"/>\n  </div>\n\n</div>\n\n\n\n"
+
+/***/ }),
+
+/***/ "./src/app/receivers/receivers.component.ts":
+/*!**************************************************!*\
+  !*** ./src/app/receivers/receivers.component.ts ***!
+  \**************************************************/
+/*! exports provided: ReceiversComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReceiversComponent", function() { return ReceiversComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _service_models__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../service/models */ "./src/app/service/models.ts");
+/* harmony import */ var _service_generic_service_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../service/generic-service.service */ "./src/app/service/generic-service.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _service_SingleTon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../service/SingleTon */ "./src/app/service/SingleTon.ts");
+
+
+
+
+
+
+var ReceiversComponent = /** @class */ (function () {
+    function ReceiversComponent(processDefinitionService, workflowService, dataHolderService, router, singleTon) {
+        this.processDefinitionService = processDefinitionService;
+        this.workflowService = workflowService;
+        this.dataHolderService = dataHolderService;
+        this.router = router;
+        this.singleTon = singleTon;
+        this.records = [];
+        this.type = _service_models__WEBPACK_IMPORTED_MODULE_2__["ProcessInstanceStatus"];
+    }
+    ReceiversComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        var id = this.dataHolderService.processDefinition.id;
+        var key = this.dataHolderService.processDefinition.key;
+        this.imgUrl = "http://localhost:8090/getPhoto?key=" + key;
+        // کارتابل عمومی
+        this.workflowService.GetModel(id).toPromise()
+            .then(function (res) {
+            if (res.Type == _service_models__WEBPACK_IMPORTED_MODULE_2__["ResultType"].Success) {
+                _this.records = res.Grid;
+            }
+            else {
+                _this.records = [];
+                alert(res.Message);
+            }
+        });
+    };
+    ReceiversComponent.prototype.showDiagram = function (m) {
+        /*this.workflowService.GetPhoto(m.key).toPromise()
+          .then(res => {
+            if (res.Type == ResultType.Success) {
+              const blob = new Blob([res.SingleRecord], {type: 'image/png'});
+    
+              this.createImageFromBlob(blob);
+            } else {
+              this.records=[];
+              alert(res.Message);
+            }
+    
+          });*/
+    };
+    ReceiversComponent.prototype.getReceivers = function (m) {
+        this.dataHolderService.processDefinition = m;
+        this.router.navigate(['/receivers']);
+    };
+    ReceiversComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-receivers',
+            template: __webpack_require__(/*! ./receivers.component.html */ "./src/app/receivers/receivers.component.html"),
+            styles: [__webpack_require__(/*! ./receivers.component.css */ "./src/app/receivers/receivers.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_generic_service_service__WEBPACK_IMPORTED_MODULE_3__["ProcessDefinitionService"],
+            _service_generic_service_service__WEBPACK_IMPORTED_MODULE_3__["WorkflowService"],
+            _service_generic_service_service__WEBPACK_IMPORTED_MODULE_3__["DataHolderService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],
+            _service_SingleTon__WEBPACK_IMPORTED_MODULE_5__["SingleTon"]])
+    ], ReceiversComponent);
+    return ReceiversComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/service/SingleTon.ts":
 /*!**************************************!*\
   !*** ./src/app/service/SingleTon.ts ***!
@@ -718,7 +943,7 @@ var SingleTon = /** @class */ (function () {
 /*!****************************************************!*\
   !*** ./src/app/service/generic-service.service.ts ***!
   \****************************************************/
-/*! exports provided: GenericService, VacationService, AccountService */
+/*! exports provided: GenericService, VacationService, AccountService, ProcessDefinitionService, WorkflowService, DataHolderService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -726,6 +951,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GenericService", function() { return GenericService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VacationService", function() { return VacationService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AccountService", function() { return AccountService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProcessDefinitionService", function() { return ProcessDefinitionService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WorkflowService", function() { return WorkflowService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DataHolderService", function() { return DataHolderService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
@@ -810,6 +1038,54 @@ var AccountService = /** @class */ (function (_super) {
     return AccountService;
 }(GenericService));
 
+var ProcessDefinitionService = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](ProcessDefinitionService, _super);
+    function ProcessDefinitionService() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.controllerName = 'ProcessDefinition';
+        return _this;
+    }
+    ProcessDefinitionService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        })
+    ], ProcessDefinitionService);
+    return ProcessDefinitionService;
+}(GenericService));
+
+var WorkflowService = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](WorkflowService, _super);
+    function WorkflowService() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.controllerName = 'Workflow';
+        return _this;
+    }
+    WorkflowService.prototype.GetPhoto = function (key) {
+        return this.http.get(this.singleTon.baseUrl + "/" + this.controllerName + "/getPhoto?key=" + key);
+    };
+    WorkflowService.prototype.GetModel = function (key) {
+        return this.http.get(this.singleTon.baseUrl + "/" + this.controllerName + "/getModel?key=" + key);
+    };
+    WorkflowService.prototype.GetProcessDefinitionById = function (key) {
+        return this.http.get(this.singleTon.baseUrl + "/" + this.controllerName + "/GetProcessDefinitionById?processDefinitionId=" + key);
+    };
+    WorkflowService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        })
+    ], WorkflowService);
+    return WorkflowService;
+}(GenericService));
+
+var DataHolderService = /** @class */ (function () {
+    function DataHolderService() {
+    }
+    DataHolderService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
+    ], DataHolderService);
+    return DataHolderService;
+}());
+
 
 
 /***/ }),
@@ -818,7 +1094,7 @@ var AccountService = /** @class */ (function (_super) {
 /*!***********************************!*\
   !*** ./src/app/service/models.ts ***!
   \***********************************/
-/*! exports provided: VoidResult, Result, ResultType, Vacation, VacationType, MyAccount, ProcessInstanceStatus, InboxTaskViewModel */
+/*! exports provided: VoidResult, Result, ResultType, TypeEnum, Notification, Vacation, VacationType, MyAccount, ProcessInstanceStatus, InboxTaskViewModel */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -826,6 +1102,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VoidResult", function() { return VoidResult; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Result", function() { return Result; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResultType", function() { return ResultType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TypeEnum", function() { return TypeEnum; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Notification", function() { return Notification; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Vacation", function() { return Vacation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VacationType", function() { return VacationType; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MyAccount", function() { return MyAccount; });
@@ -852,6 +1130,17 @@ var ResultType;
     ResultType[ResultType["Success"] = 0] = "Success";
     ResultType[ResultType["Fail"] = 1] = "Fail";
 })(ResultType || (ResultType = {}));
+var TypeEnum;
+(function (TypeEnum) {
+    TypeEnum[TypeEnum["Long"] = 0] = "Long";
+    TypeEnum[TypeEnum["String"] = 1] = "String";
+})(TypeEnum || (TypeEnum = {}));
+var Notification = /** @class */ (function () {
+    function Notification() {
+    }
+    return Notification;
+}());
+
 var Vacation = /** @class */ (function () {
     function Vacation() {
     }
